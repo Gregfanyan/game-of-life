@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-
+import styles from "./GameBoard.module.css";
 const GameBoard: FunctionComponent<{
   setGrid: Function;
   grid: number[][];
@@ -19,6 +19,7 @@ const GameBoard: FunctionComponent<{
           rows.map((col, colIndex) => {
             return (
               <div
+                className={styles.row}
                 onClick={() => {
                   let cloneGrid = [...grid];
                   cloneGrid[rowIndex][colIndex] = grid[rowIndex][colIndex]
@@ -28,12 +29,9 @@ const GameBoard: FunctionComponent<{
                 }}
                 key={`${rowIndex}-${colIndex}`}
                 style={{
-                  width: 20,
-                  height: 20,
                   backgroundColor: grid[rowIndex][colIndex]
                     ? "#13d626"
                     : undefined,
-                  border: "1px solid #595959",
                 }}
               />
             );
