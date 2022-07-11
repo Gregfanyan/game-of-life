@@ -1,6 +1,9 @@
 .header {
   display: flex;
   justify-content: center;
-  padding: 20px;
-  text-transform: capitalize;
+  padding: 10px;
+  text-transform: uppercase;
+  background-color: rgb(24, 108, 114);
+  margin-bottom: 20px;
+  color: #fff;
 }

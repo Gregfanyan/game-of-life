@@ -20,10 +20,32 @@ const randomGrid = () => {
 
 function App() {
   const [grid, setGrid] = useState<number[][]>(randomGrid());
+  const [isRunning, setIsRunning] = useState<boolean>(false);
   return (
     <>
       <Header />
-      <GameBoard numOfCols={numOfCols} grid={grid} setGrid={setGrid} />
+      <main
+        style={{
+          display: "grid",
+          gridTemplateColumns: `repeat(${numOfCols},  20px) `,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {grid &&
+          grid.map((rows, rowIndex) =>
+            rows.map((col, colIndex) => (
+              <GameBoard
+                rowIndex={rowIndex}
+                colIndex={colIndex}
+                grid={grid}
+                setGrid={setGrid}
+                setIsRunning={setIsRunning}
+                isRunning={isRunning}
+              />
+            ))
+          )}
+      </main>
     </>
   );
 }
