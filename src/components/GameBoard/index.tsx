@@ -5,9 +5,7 @@ const GameBoard: FunctionComponent<{
   rowIndex: any;
   setGrid: Function;
   grid: number[][];
-  isRunning: boolean;
-  setIsRunning: Function;
-}> = ({ setGrid, grid, isRunning, setIsRunning, colIndex, rowIndex }) => {
+}> = ({ setGrid, grid, colIndex, rowIndex }) => {
   return (
     <div
       className={styles.row}
