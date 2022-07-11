@@ -36,7 +36,7 @@ const PlayerControls: FunctionComponent<{
       >
         {startButtonTitle}
       </button>
-      <button onClick={() => setGrid(randomGrid())}>Reset</button>
+      <button onClick={() => setGrid(randomGrid())}>Random</button>
       <button
         onClick={() => {
           setIsStart(false);
