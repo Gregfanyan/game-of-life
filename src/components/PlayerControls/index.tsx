@@ -20,7 +20,7 @@ const PlayerControls: FunctionComponent<{
   generateEmptyGrid,
 }) => {
   const startButtonTitle = isStart ? "Stop" : "Play";
-
+  console.log("startRef", startRef);
   return (
     <section className={style.button_wrapper}>
       <button
