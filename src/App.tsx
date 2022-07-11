@@ -41,14 +41,19 @@ function App() {
       return;
     }
     setGrid((g) => {
-      const next = g.map((row, i) => {
-        return row.map((cell, j) => {
+      const next = g.map((row, rowIndex) => {
+        return row.map((cell, cellIndex) => {
           let sum = 0;
           positions.forEach((position) => {
-            const x = i + position[0];
-            const y = j + position[1];
-            if (x >= 0 && x < numOfRows && y >= 0 && y < numOfCols) {
-              sum += g[x][y];
+            const rowPosition = rowIndex + position[0];
+            const cellPosition = cellIndex + position[1];
+            if (
+              rowPosition >= 0 &&
+              rowPosition < numOfRows &&
+              cellPosition >= 0 &&
+              cellPosition < numOfCols
+            ) {
+              sum += g[rowPosition][cellPosition];
             }
           });
           if (sum < 2 || sum > 3) {
@@ -57,13 +62,13 @@ function App() {
           if (sum === 3) {
             return 1;
           }
-          return g[i][j];
+          return g[rowIndex][cellIndex];
         });
       });
       return next;
     });
   }
-  const buttonTitle = isStart ? "Stop" : "Play";
+  const startButtonTitle = isStart ? "Stop" : "Play";
   return (
     <>
       <Header />
@@ -79,7 +84,7 @@ function App() {
             }, 1000);
           }}
         >
-          {buttonTitle}
+          {startButtonTitle}
         </button>
         <div
           style={{
