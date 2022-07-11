@@ -45,6 +45,7 @@ function App() {
     if (!startRef.current) {
       return;
     }
+    setGrid(randomGrid());
     setGrid((g) => {
       const next = g.map((row, rowIndex) => {
         return row.map((cell, cellIndex) => {
