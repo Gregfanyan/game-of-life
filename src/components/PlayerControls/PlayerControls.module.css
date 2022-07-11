@@ -1,0 +1,30 @@
+.button_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+}
+button {
+  display: inline-block;
+  padding: 1em 3em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: rgb(24, 108, 114);
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: rgb(7, 60, 63);
+}
+
+button:focus {
+  background-color: green;
+}

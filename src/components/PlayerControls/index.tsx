@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-
+import style from "./PlayerControls.module.css";
 const PlayerControls: FunctionComponent<{
   setIsStart: Function;
   isStart: boolean;
@@ -22,7 +22,7 @@ const PlayerControls: FunctionComponent<{
   const startButtonTitle = isStart ? "Stop" : "Play";
 
   return (
-    <>
+    <section className={style.button_wrapper}>
       <button
         onClick={() => {
           setIsStart(!isStart);
@@ -38,7 +38,7 @@ const PlayerControls: FunctionComponent<{
       </button>
       <button onClick={() => setGrid(randomGrid())}>Reset</button>
       <button onClick={() => setGrid(generateEmptyGrid)}>Clear</button>
-    </>
+    </section>
   );
 };
 
