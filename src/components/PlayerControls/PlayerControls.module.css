@@ -13,12 +13,14 @@ button {
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Roboto", sans-serif;
-  font-weight: 300;
+  font-weight: 600;
+  font-size: 12px;
   color: #ffffff;
   text-align: center;
   transition: all 0.2s;
   background-color: rgb(24, 108, 114);
   border-radius: 10px;
+  cursor: pointer;
 }
 
 button:hover {

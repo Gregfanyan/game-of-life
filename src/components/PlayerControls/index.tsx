@@ -37,7 +37,14 @@ const PlayerControls: FunctionComponent<{
         {startButtonTitle}
       </button>
       <button onClick={() => setGrid(randomGrid())}>Reset</button>
-      <button onClick={() => setGrid(generateEmptyGrid)}>Clear</button>
+      <button
+        onClick={() => {
+          setIsStart(false);
+          setGrid(generateEmptyGrid);
+        }}
+      >
+        Clear
+      </button>
     </section>
   );
 };
