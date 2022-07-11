@@ -45,6 +45,13 @@ function App() {
             rows.map((col, colIndex) => {
               return (
                 <div
+                  onClick={() => {
+                    let cloneGrid = [...grid];
+                    cloneGrid[rowIndex][colIndex] = grid[rowIndex][colIndex]
+                      ? 0
+                      : 1;
+                    setGrid(cloneGrid);
+                  }}
                   key={`${rowIndex}-${colIndex}`}
                   style={{
                     width: 20,
