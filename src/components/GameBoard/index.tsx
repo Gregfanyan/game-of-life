@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from "react";
 import styles from "./GameBoard.module.css";
 const GameBoard: FunctionComponent<{
-  colIndex: any;
-  rowIndex: any;
+  colIndex: number;
+  rowIndex: number;
   setGrid: Function;
   grid: number[][];
 }> = ({ setGrid, grid, colIndex, rowIndex }) => {

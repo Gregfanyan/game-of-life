@@ -1,7 +1,8 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import Header from "./components/Header";
 import "./App.css";
 import GameBoard from "./components/GameBoard";
+import PlayerControls from "./components/PlayerControls";
 
 const numOfRows = 25;
 const numOfCols = 35;
@@ -30,13 +31,17 @@ const positions = [
 ];
 
 function App() {
-  const [grid, setGrid] = useState<number[][]>(randomGrid());
+  const [grid, setGrid] = useState<number[][]>([]);
   const [isStart, setIsStart] = useState<boolean>(false);
 
   const startRef = useRef(isStart);
   startRef.current = isStart;
 
-  function runGame(grid: number[][]) {
+  useEffect(() => {
+    setGrid(randomGrid());
+  }, []);
+
+  const runGame = useCallback((grid: number[][]) => {
     if (!startRef.current) {
       return;
     }
@@ -67,25 +72,31 @@ function App() {
       });
       return next;
     });
-  }
-  const startButtonTitle = isStart ? "Stop" : "Play";
+  }, []);
+
+  const generateEmptyGrid = (): number[][] => {
+    const rows = [];
+    for (let i = 0; i < numOfRows; i++) {
+      rows.push(Array.from(Array(numOfCols), () => 0));
+    }
+    return rows;
+  };
+
   return (
     <>
       <Header />
       <main>
-        <button
-          onClick={() => {
-            setIsStart(!isStart);
-            if (!isStart) {
-              startRef.current = true;
-            }
-            setInterval(() => {
-              runGame(grid);
-            }, 1000);
-          }}
-        >
-          {startButtonTitle}
-        </button>
+        <PlayerControls
+          setIsStart={setIsStart}
+          isStart={isStart}
+          startRef={startRef}
+          grid={grid}
+          runGame={runGame}
+          setGrid={setGrid}
+          randomGrid={randomGrid}
+          generateEmptyGrid={generateEmptyGrid}
+        />
+
         <div
           style={{
             display: "grid",
