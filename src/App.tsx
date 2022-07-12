@@ -7,17 +7,10 @@ import PlayerControls from "./components/PlayerControls";
 const numOfRows = 25;
 const numOfCols = 35;
 
-const randomGrid = () => {
-  const grid = [];
-  for (let i = 0; i < numOfRows; i++) {
-    const row = [];
-    for (let j = 0; j < numOfCols; j++) {
-      row.push(Math.floor(Math.random() * 2));
-    }
-    grid.push(row);
-  }
-  return grid;
-};
+const randomGrid = () =>
+  Array.from({ length: numOfRows }, () =>
+    Array.from({ length: numOfCols }, () => Math.floor(Math.random() * 2))
+  );
 
 const positions = [
   [0, 1],
