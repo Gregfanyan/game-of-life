@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import "./App.css";
 import GameBoard from "./components/GameBoard";
 import PlayerControls from "./components/PlayerControls";
+import { positions } from "./utils/positiionsDefaultArr";
 
 const numOfRows = 25;
 const numOfCols = 35;
@@ -11,17 +12,6 @@ const randomGrid = () =>
   Array.from({ length: numOfRows }, () =>
     Array.from({ length: numOfCols }, () => Math.floor(Math.random() * 2))
   );
-
-const positions = [
-  [0, 1],
-  [0, -1],
-  [1, -1],
-  [-1, 1],
-  [1, 1],
-  [-1, -1],
-  [1, 0],
-  [-1, 0],
-];
 
 function App() {
   const [grid, setGrid] = useState<number[][]>([]);
@@ -103,6 +93,7 @@ function App() {
             grid.map((rows, rowIndex) =>
               rows.map((col, colIndex) => (
                 <GameBoard
+                  key={`${rowIndex}-${colIndex}`}
                   rowIndex={rowIndex}
                   colIndex={colIndex}
                   grid={grid}
