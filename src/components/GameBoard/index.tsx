@@ -1,10 +1,11 @@
 import React, { FunctionComponent } from "react";
+import { GridProps } from "../../utils/types";
 import styles from "./GameBoard.module.css";
 const GameBoard: FunctionComponent<{
   colIndex: number;
   rowIndex: number;
   setGrid: Function;
-  grid: number[][];
+  grid: GridProps;
 }> = ({ setGrid, grid, colIndex, rowIndex }) => {
   return (
     <div

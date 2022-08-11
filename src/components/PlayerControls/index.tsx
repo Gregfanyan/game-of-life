@@ -1,13 +1,14 @@
 import React, { FunctionComponent } from "react";
+import { GridProps, StartProps } from "../../utils/types";
 import style from "./PlayerControls.module.css";
 const PlayerControls: FunctionComponent<{
   setIsStart: Function;
-  isStart: boolean;
+  isStart: StartProps;
   startRef: React.MutableRefObject<boolean>;
-  grid: number[][];
+  grid: GridProps;
   setGrid: Function;
-  runGame: (grid: number[][]) => void;
-  randomGrid: any;
+  runGame: (grid: GridProps) => void;
+  randomGrid: () => GridProps;
   generateEmptyGrid: Function;
 }> = ({
   setIsStart,

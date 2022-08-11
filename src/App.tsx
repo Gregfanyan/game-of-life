@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { Header, GameBoard, PlayerControls } from "./components";
 import { positions } from "./utils/positiionsDefaultArr";
+import { StartProps, GridProps } from "./utils/types";
 import "./App.css";
 
 const numOfRows = 25;
@@ -12,9 +13,8 @@ const randomGrid = () =>
   );
 
 function App() {
-  const [grid, setGrid] = useState<number[][]>([]);
-  const [isStart, setIsStart] = useState<boolean>(false);
-
+  const [grid, setGrid] = useState<GridProps>([]);
+  const [isStart, setIsStart] = useState<StartProps>(false);
   const startRef = useRef(isStart);
   startRef.current = isStart;
 
@@ -22,7 +22,7 @@ function App() {
     setGrid(randomGrid());
   }, []);
 
-  const runGame = useCallback((grid: number[][]) => {
+  const runGame = useCallback(() => {
     if (!startRef.current) {
       return;
     }
@@ -56,7 +56,7 @@ function App() {
     });
   }, []);
 
-  const generateEmptyGrid = (): number[][] => {
+  const generateEmptyGrid = () => {
     const rows = [];
     for (let i = 0; i < numOfRows; i++) {
       rows.push(Array.from(Array(numOfCols), () => 0));
