@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef } from "react";
 import { Header, GameBoard, PlayerControls } from "./components";
 import { positions } from "./utils/positiionsDefaultArr";
 import { StartProps, GridProps } from "./utils/types";
@@ -13,22 +13,18 @@ const randomGrid = () =>
   );
 
 function App() {
-  const [grid, setGrid] = useState<GridProps>([]);
+  const [grid, setGrid] = useState<GridProps>(() => randomGrid());
   const [isStart, setIsStart] = useState<StartProps>(false);
   const startRef = useRef(isStart);
   startRef.current = isStart;
-
-  useEffect(() => {
-    setGrid(randomGrid());
-  }, []);
 
   const runGame = useCallback(() => {
     if (!startRef.current) {
       return;
     }
     setGrid(randomGrid());
-    setGrid((g) => {
-      const next = g.map((row, rowIndex) => {
+    setGrid((prevGrid) => {
+      return prevGrid.map((row, rowIndex) => {
         return row.map((cell, cellIndex) => {
           let sum = 0;
           positions.forEach((position) => {
@@ -40,7 +36,7 @@ function App() {
               cellPosition >= 0 &&
               cellPosition < numOfCols
             ) {
-              sum += g[rowPosition][cellPosition];
+              sum += prevGrid[rowPosition][cellPosition];
             }
           });
           if (sum < 2 || sum > 3) {
@@ -49,10 +45,9 @@ function App() {
           if (sum === 3) {
             return 1;
           }
-          return g[rowIndex][cellIndex];
+          return prevGrid[rowIndex][cellIndex];
         });
       });
-      return next;
     });
   }, []);
 
@@ -87,18 +82,17 @@ function App() {
             alignItems: "center",
           }}
         >
-          {grid &&
-            grid.map((rows, rowIndex) =>
-              rows.map((col, colIndex) => (
-                <GameBoard
-                  key={`${rowIndex}-${colIndex}`}
-                  rowIndex={rowIndex}
-                  colIndex={colIndex}
-                  grid={grid}
-                  setGrid={setGrid}
-                />
-              ))
-            )}
+          {grid.map((rows, rowIndex) =>
+            rows.map((col, colIndex) => (
+              <GameBoard
+                key={`${rowIndex}-${colIndex}`}
+                rowIndex={rowIndex}
+                colIndex={colIndex}
+                grid={grid}
+                setGrid={setGrid}
+              />
+            ))
+          )}
         </div>
       </main>
     </>
