@@ -1,9 +1,7 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
-import Header from "./components/Header";
-import "./App.css";
-import GameBoard from "./components/GameBoard";
-import PlayerControls from "./components/PlayerControls";
+import { useState, useCallback, useRef, useEffect } from "react";
+import { Header, GameBoard, PlayerControls } from "./components";
 import { positions } from "./utils/positiionsDefaultArr";
+import "./App.css";
 
 const numOfRows = 25;
 const numOfCols = 35;
